@@ -4,7 +4,7 @@ function Text() {
          "code" : 1000,
          "day" : "Sunny",
          "night" : "Clear",
-         "icon" : 113
+         "icon" : 113,
       },
       {
          "code" : 1003,
@@ -290,15 +290,70 @@ function Text() {
       }
    ]
 
-   const textData = {}
-   weatherText.map(data => {
-      textData[data.code] = {
+   const colorCodes = [
+    { code: 1000, color: "#ffd700" },
+    { code: 1003, color: "#87ceeb" },
+    { code: 1006, color: "#778899" },
+    { code: 1009, color: "#696969" },
+    { code: 1030, color: "#d3d3d3" },
+    { code: 1063, color: "#4682b4" },
+    { code: 1066, color: "#add8e6" },
+    { code: 1069, color: "#b0e0e6" },
+    { code: 1072, color: "#afeeee" },
+    { code: 1087, color: "#ffa500" },
+    { code: 1114, color: "#fffafa" },
+    { code: 1117, color: "#f8f8ff" },
+    { code: 1135, color: "#dcdcdc" },
+    { code: 1147, color: "#e0ffff" },
+    { code: 1150, color: "#afeeee" },
+    { code: 1153, color: "#afeeee" },
+    { code: 1168, color: "#afeeee" },
+    { code: 1171, color: "#afeeee" },
+    { code: 1180, color: "#87ceeb" },
+    { code: 1183, color: "#87ceeb" },
+    { code: 1186, color: "#87ceeb" },
+    { code: 1189, color: "#87ceeb" },
+    { code: 1192, color: "#87ceeb" },
+    { code: 1195, color: "#87ceeb" },
+    { code: 1198, color: "#add8e6" },
+    { code: 1201, color: "#add8e6" },
+    { code: 1204, color: "#b0e0e6" },
+    { code: 1207, color: "#b0e0e6" },
+    { code: 1210, color: "#fffafa" },
+    { code: 1213, color: "#fffafa" },
+    { code: 1216, color: "#fffafa" },
+    { code: 1219, color: "#fffafa" },
+    { code: 1222, color: "#fffafa" },
+    { code: 1225, color: "#fffafa" },
+    { code: 1237, color: "#afeeee" },
+    { code: 1240, color: "#87ceeb" },
+    { code: 1243, color: "#87ceeb" },
+    { code: 1246, color: "#87ceeb" },
+    { code: 1249, color: "#b0e0e6" },
+    { code: 1252, color: "#b0e0e6" },
+    { code: 1255, color: "#fffafa" },
+    { code: 1258, color: "#fffafa" },
+    { code: 1261, color: "#afeeee" },
+    { code: 1264, color: "#afeeee" },
+    { code: 1273, color: "#ffa500" },
+    { code: 1276, color: "#ffa500" },
+    { code: 1279, color: "#fffafa" },
+    { code: 1282, color: "#fffafa" }
+];
+
+
+   const weatherData = {}
+   weatherText.map((data, index) => {
+      weatherData[data.code] = {
          code: data.code,
          desktop: `/images/desktop/${data.code}.webp`,
          tablet: `/images/tablet/${data.code}.webp`,
-         mobile: `/images/mobile/${data.code}.webp`
+         mobile: `/images/mobile/${data.code}.webp`,
+         color: `bg-[${colorCodes[index].color}]`
       }
    })
+
+   return weatherData
 }
 
 export default Text
