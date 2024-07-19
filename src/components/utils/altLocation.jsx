@@ -1,4 +1,3 @@
-import React from 'react'
 
 async function AltLocation() {
    try {
@@ -9,8 +8,8 @@ async function AltLocation() {
       const data = await response.json();
       return data
     } catch (error) {
-      // console.log('RETRYING ');
-      console.error(error)
+      console.log('RETRYING TO FETCH ALT LOCATION');
+      // console.error(error)
       // setTimeout(AltLocation(), 5000)
     }
 }

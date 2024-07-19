@@ -2,12 +2,12 @@ import { FaLocationCrosshairs } from "react-icons/fa6";
 import { fetchContext } from "../../pages/home";
 import { useContext, useRef, useState } from "react";
 import { FaGlobeAmericas } from "react-icons/fa";
-import { CiSearch } from "react-icons/ci";
+import { FaSearch } from "react-icons/fa";
 import FetchData from "../fetchData";
 import ActiveCode from "../activeCode";
 
 function DesktopNav() {
-   const {fetchData, setFetchData, active, setActive, mainRef} = useContext(fetchContext)
+   const {fetchData, setFetchData, active, setActive, mainRef, setDeg, deg} = useContext(fetchContext)
    const [search, setSearch] = useState('')
    const inputRef = useRef()
 
@@ -33,12 +33,12 @@ function DesktopNav() {
       }
    }
    return (
-   <nav className="z-20 flex justify-between">
+   <nav className="z-20 flex justify-between  z-90 top-0">
       {
          active && <>
             <div className="flex gap-2 items-center">
                <FaLocationCrosshairs className="text-white w-4 h-4"/>
-               <h1 className="font-medium text-md tracking-wider text-white">
+               <h1 className="font-medium text-sm text-white">
                   {fetchData.location.name}
                </h1>
             </div>
@@ -56,16 +56,29 @@ function DesktopNav() {
                      onChange={searchChange}
                      className="bg-inherit text-center pb-2 placeholder:text-xs placeholder:text-white placeholder:font-semibold placeholder:normal-case capitalize focus:outline-none font-semibold text-white text-sm w-100 border-0" />
                   <button type="submit">
-                     <CiSearch className="h-4 text-white w-4 cursor-pointer"/>
+                     <FaSearch className="h-5 text-white w-5 cursor-pointer"/>
                   </button>
                </label>
             </form>
-            <div className="flex gap-2 items-center">
-               <FaGlobeAmericas className="text-white w-4 h-4"/>
-               <h1 className="font-medium text-md tracking-wider text-white">
-                  {fetchData.location.country}
-               </h1>
+            <div className="flex gap-8 items-center">
+               <div className="flex gap-2 items-center">
+                  <FaGlobeAmericas className="text-white w-4 h-4"/>
+                  <h1 className="font-medium text-sm text-white">
+                     {fetchData.location.country}
+                  </h1>
+               </div>
+               {
+                  deg && <h1 className="text-sm font-bold text-white cursor-pointer" onClick={() => setDeg(!deg)}>
+                     &deg;C
+                  </h1>
+               }
+               {
+                  !deg && <h1 className="text-sm font-bold text-white cursor-pointer" onClick={() => setDeg(!deg)}>
+                     &deg;F
+                  </h1>
+               }
             </div>
+            
          </>
       }
    </nav>
