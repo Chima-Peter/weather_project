@@ -9,7 +9,9 @@ async function AltLocation() {
       const data = await response.json();
       return data
     } catch (error) {
-      throw new Error('Error fetching location:', error);
+      // console.log('RETRYING ');
+      console.error(error)
+      // setTimeout(AltLocation(), 5000)
     }
 }
 

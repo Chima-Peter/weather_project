@@ -349,7 +349,7 @@ function Text() {
          desktop: `/images/desktop/${data.code}.webp`,
          tablet: `/images/tablet/${data.code}.webp`,
          mobile: `/images/mobile/${data.code}.webp`,
-         color: `bg-[${colorCodes[index].color}]`
+         color: colorCodes[index].color
       }
    })
 

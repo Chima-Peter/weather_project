@@ -1,20 +1,19 @@
 async function UserLocation() {
    let location
 
-   const successCallback = (position) => {
-      console.log(position);
-      location = position
+   const successCallback = async (position) => {
+      location = await position
       return location
    };
    
    const errorCallback = (error) => {
-      console.error(error)
+      // console.log('RETRYING')
+      // setTimeout(UserLocation(), 5000)
    };
    
    if (navigator.geolocation) {
       const options = {
          enableHighAccuracy: true,
-         timeout: 5000,
        };
        
       navigator.geolocation.watchPosition(

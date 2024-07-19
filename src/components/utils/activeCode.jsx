@@ -3,10 +3,10 @@ function ActiveCode({code}) {
    const weatherData = Text()
    let color
    Object.keys(weatherData).map(data => {
-      if (weatherData[data].code == code)
-         color = weatherData[data].color
+      if (weatherData[data].code == code) {
+         color = weatherData[data].desktop
+      }
    })
-   console.log(color)
    return color
 }
 
