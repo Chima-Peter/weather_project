@@ -346,7 +346,7 @@ function Text() {
    weatherText.map((data, index) => {
       weatherData[data.code] = {
          code: data.code,
-         desktop: `/images/desktop/${data.code}.webp`,
+         desktop: `/weather_project/images/desktop/${data.code}.webp`,
          tablet: `/images/tablet/${data.code}.webp`,
          mobile: `/images/mobile/${data.code}.webp`,
          color: colorCodes[index].color

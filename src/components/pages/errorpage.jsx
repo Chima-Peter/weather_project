@@ -9,8 +9,7 @@ function ErrorPage() {
             alt="ERROR PAGE" 
             srcSet="/images/mobile/404-error.webp 300w, /images/tablet/404-error.webp 600w, /images/desktop/404-error.webp 1200w" 
             sizes='(max-width: 600px) 300px, (max-width: 1200px) 600px, 1200px' 
-            rel='preload' 
-            fetchpriority='high'/>
+            rel='preload' />
       </Link>
     </div>
   )

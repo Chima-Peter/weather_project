@@ -1,14 +1,14 @@
 import { FaLocationCrosshairs } from "react-icons/fa6";
-import { fetchContext } from "../../pages/home";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
-import FetchData from "../fetchData";
 import ActiveCode from "../activeCode";
+import { useDataContext } from "../fetchData";
+import { fetchContext } from "../../pages/home";
 
 function DesktopNav() {
-   const {fetchData, setFetchData, active, setActive, mainRef, setDeg, deg} = useContext(fetchContext)
-   const [search, setSearch] = useState('')
+   const {fetchData, setLocation, setSearch, search, active} = useDataContext()
+   const {deg, mainRef, setDeg} = useContext(fetchContext)
    const inputRef = useRef()
 
    const searchChange  = () => {
@@ -17,21 +17,23 @@ function DesktopNav() {
    const handleSearch = async () => {
       event.preventDefault()
       if (search != '') {
-         setActive(false)
-         let temp = await FetchData({location:{search}})
-         setFetchData(temp)
-         setSearch('')
-         setActive(true)
-         if (mainRef.current) {   
-            mainRef.current.style.backgroundImage = `url(${ActiveCode({code:temp.current.condition.code})})`;
-            mainRef.current.style.backgroundSize = 'cover';
-            mainRef.current.style.backgroundPosition = 'center';
-         }
+         setLocation(search)
       }
       else {
          inputRef.current.focus()
       }
    }
+
+   useEffect(() => {
+         if (mainRef.current) {
+            setSearch('')
+            let temp = fetchData
+            mainRef.current.style.backgroundImage = `url(${ActiveCode({code:temp.current.condition.code})})`;
+            mainRef.current.style.backgroundSize = 'cover';
+            mainRef.current.style.backgroundPosition = 'center';
+         }
+      }, [fetchData])
+
    return (
    <nav className="z-20 flex justify-between  z-90 top-0">
       {

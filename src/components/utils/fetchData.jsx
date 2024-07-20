@@ -1,21 +1,60 @@
-async function FetchData({location}) {
-   try {
-      console.log(location)
-      let response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=0fd44594938846f489191613241504&q=${location['search']}&days=7&aqi=yes&alerts=yes`)
-      if (!response.ok) {
-         throw new Error(`HTTPS Error: Status ${response.status}`)
+import { createContext, useEffect, useState } from "react"
+import React from "react"
+
+const DataFetch = createContext()
+
+export const FetchData = ({children}) => {
+   const [fetchData, setFetchData] = useState()
+   const [active, setActive] = useState(false)
+   const [search, setSearch] = useState('')
+   const [location, setLocation] = useState('New york')
+   const [error, setError] = useState('')
+
+   const getWeather = async () => {
+      try {
+         setActive(false)
+         let response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=0fd44594938846f489191613241504&q=${location}&days=7&aqi=yes&alerts=yes`)
+         if (!response.ok) {
+            if (response.status == 400)
+            {
+               setError('Enter a valid location to search')
+            }
+            setTimeout(() => {
+               setActive(true)
+               setError('')
+            }, 2000)
+            setSearch('')
+            return
+         }
+         const result = await response.json()
+         setFetchData(result)
+         setActive(true)
+         return result
       }
-      const result = await response.json()
-      console.log(result)
-      console.log(location)
-      return result
+      catch (error) {
+         setError('Check network connectivity and reload page')
+         setTimeout(() => {
+            setActive(true)
+            setError('')
+         }, 5000)
+         setSearch('')
+         return
+      }
    }
-   catch (error) {
-      console.log('RETRYING TO FETCH WEATHER DATA')
-      // let loc = location
-      // setTimeout(FetchData({location:loc}), 3000)
-      console.error(error)
-   }
+
+   useEffect(()=> {
+      getWeather()
+   }, [])
+
+   useEffect(()=> {
+      getWeather()
+   }, [location])
+
+   return (
+      <DataFetch.Provider value={{active, setActive, fetchData, search, setSearch, error, setError, setFetchData, location, setLocation}}>
+         {children}
+      </DataFetch.Provider>
+   )
 }
 
-export default FetchData
+export const useDataContext = () => React.useContext(DataFetch);
