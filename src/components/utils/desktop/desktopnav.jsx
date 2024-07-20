@@ -1,15 +1,14 @@
 import { FaLocationCrosshairs } from "react-icons/fa6";
-import { CiLocationOn } from "react-icons/ci";
+import { MdLocationPin } from "react-icons/md";
 import { useContext, useEffect, useRef } from "react";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
-import ActiveCode from "../activeCode";
 import { useDataContext } from "../fetchData";
 import { fetchContext } from "../../pages/home";
 
 function DesktopNav() {
    const {fetchData, setLocation, setSearch, search, active} = useDataContext()
-   const {deg, mainRef, setDeg} = useContext(fetchContext)
+   const {deg, setDeg} = useContext(fetchContext)
    const inputRef = useRef()
 
    const searchChange  = () => {
@@ -26,13 +25,7 @@ function DesktopNav() {
    }
 
    useEffect(() => {
-         if (mainRef.current) {
-            setSearch('')
-            let temp = fetchData
-            mainRef.current.style.backgroundImage = `url(${ActiveCode({code:temp.current.condition.code})})`;
-            mainRef.current.style.backgroundSize = 'cover';
-            mainRef.current.style.backgroundPosition = 'center';
-         }
+         setSearch('')
       }, [fetchData])
 
    return (
@@ -45,7 +38,7 @@ function DesktopNav() {
             </h1>
          </div>
          <div className="flex gap-2 items-center">
-            <CiLocationOn
+            <MdLocationPin
                 className="text-white w-4 h-4"/>
             <h1 className="font-medium md:text-xs lg:text-sm text-white">
                {fetchData.location.region}

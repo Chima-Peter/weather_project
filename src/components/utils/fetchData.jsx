@@ -7,7 +7,7 @@ export const FetchData = ({children}) => {
    const [fetchData, setFetchData] = useState()
    const [active, setActive] = useState(false)
    const [search, setSearch] = useState('')
-   const [location, setLocation] = useState('New york')
+   const [location, setLocation] = useState('')
    const [error, setError] = useState('')
 
    const getWeather = async () => {
@@ -29,25 +29,27 @@ export const FetchData = ({children}) => {
          const result = await response.json()
          setFetchData(result)
          setActive(true)
-         return result
       }
       catch (error) {
-         setError('Check network connectivity and reload page')
-         setTimeout(() => {
-            setActive(true)
-            setError('')
-         }, 5000)
+         if (search != '') {
+            setError('Check network connectivity and retry.')
+            setTimeout(() => {
+               setActive(true)
+               setError('')
+            }, 3000)
+         }
+         else {
+            setTimeout(() => {
+               getWeather()
+            }, 2000)
+         }
          setSearch('')
          return
       }
    }
 
    useEffect(()=> {
-      getWeather()
-   }, [])
-
-   useEffect(()=> {
-      getWeather()
+      if (location != '') getWeather()
    }, [location])
 
    return (

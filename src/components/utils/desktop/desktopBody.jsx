@@ -22,19 +22,19 @@ function DesktopBody() {
    let data = fetchData.current.air_quality
    let index = data['us-epa-index']
 
-   if (index <= 50) {
+   if (index == 1) {
       temp.desc = 'Good';
       temp.index = index
-   } else if (index <= 100) {
+   } else if (index == 2) {
       temp.desc = 'Moderate';
       temp.index = index
-   } else if (index <= 150) {
+   } else if (index == 3) {
       temp.desc = 'Unhealthy for Sensitive Groups';
       temp.index = index
-   } else if (index <= 200) {
+   } else if (index == 4) {
       temp.desc = 'Unhealthy';
       temp.index = index
-   } else if (index <= 300) {
+   } else if (index == 5) {
       temp.desc = 'Very Unhealthy';
       temp.index = index
    } else {

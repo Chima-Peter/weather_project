@@ -1,19 +1,27 @@
-// function UserLocation() {
-//    if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//          console.log(position)
-//          return({
-//          latitude: position.coords.latitude,
-//          longitude: position.coords.longitude
-//          });
-//       },
-//       (error) => {
-//          console.log(error)
-//       }
-//    );
-//    } else {
-//    setError('Geolocation is not supported by this browser.');
-//    }
-// }
-// export default UserLocation
+import { useEffect } from 'react'
+import { useDataContext } from './fetchData';
+
+function UserLocation() {
+   const { setLocation } = useDataContext()
+
+   useEffect(() => {
+      if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(successWeather, failWeather)
+      }
+      else {
+         setLocation('New York')
+      }
+   }, [])
+   const successWeather = (position) => {
+      setLocation(position.coords.latitude + ', ' +position.coords.longitude)
+   }
+   const failWeather = () => {
+      setLocation('New York')
+   }
+   return (
+      <div>
+
+      </div>
+   )
+}
+export default UserLocation

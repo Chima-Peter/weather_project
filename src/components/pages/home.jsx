@@ -4,6 +4,7 @@ import { useDataContext } from "../utils/fetchData"
 import DesktopHome from "../utils/desktop/desktopHome"
 import MediaQuery from "react-responsive"
 import Loading from "../utils/loading"
+import UserLocation from '../utils/geolocation'
 
 const fetchContext = createContext()
 
@@ -22,7 +23,7 @@ function Home() {
 
 
   return (
-   <fetchContext.Provider value={{mainRef, deg, setDeg}} >
+   <fetchContext.Provider value={{deg, setDeg}} >
       <main 
          className={`w-[100%] min-h-[100vh] overflow-x-hidden`}
          ref={mainRef}
@@ -38,6 +39,7 @@ function Home() {
          !active && <Loading />
       }
       </main>
+      <UserLocation />
    </fetchContext.Provider>
   )
 }
