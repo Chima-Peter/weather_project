@@ -78,19 +78,19 @@ function DesktopForecast() {
             activeBtn.val1 && <div className='flex gap-2 overflow-x-auto customScroll'>
                {
                   Object.keys(today).map((data, index) => (
-                     <div className='py-1 px-4 border-2 items-center flex flex-col rounded-md' key={data}>
+                     <div className='py-1 px-4 border-2 items-center flex flex-col rounded-md h-[100px] justify-between' key={data}>
                         <p className='text-xs text-white italic font-semibold'>
                            {time[index]}:00
                         </p>
                         <img src={today[data].condition.icon} alt="" />
                         {
                            deg && <h4 className="font-medium  text-md text-white">
-                              {fetchData.current.temp_c}&deg;C
+                              {today[data].temp_c}&deg;C
                            </h4>
                         }
                         {
                            !deg && <h4 className="font-medium  text-md text-white">
-                              {fetchData.current.temp_f}&deg;F
+                              {today[data].temp_f}&deg;F
                            </h4>
                         }
                      </div>
@@ -102,19 +102,19 @@ function DesktopForecast() {
             activeBtn.val2 && <div className='flex gap-2 overflow-x-auto customScroll'>
                {
                   Object.keys(tomorrow).map((data, index) => (
-                     <div className='py-1 px-4 border-2 items-center flex flex-col rounded-md'key={data}>
+                     <div className='py-1 px-4 border-2 items-center flex flex-col rounded-md h-[100px] justify-between'key={data}>
                         <p className='text-xs text-white italic font-semibold'>
                            {time[index]}:00
                         </p>
                         <img src={tomorrow[data].condition.icon} alt="" />
                         {
                            deg && <h4 className="font-medium  text-md text-white">
-                              {fetchData.current.temp_c}&deg;C
+                              {tomorrow[data].temp_c}&deg;C
                            </h4>
                         }
                         {
                            !deg && <h4 className="font-medium  text-md text-white">
-                              {fetchData.current.temp_f}&deg;F
+                              {tomorrow[data].temp_f}&deg;F
                            </h4>
                         }
                      </div>
@@ -126,19 +126,19 @@ function DesktopForecast() {
             activeBtn.val3 && <div className='flex gap-2 overflow-x-auto customScroll'>
                {
                   Object.keys(next).map((data, index) => (
-                     <div className='py-1 px-4 border-2 items-center flex flex-col rounded-md' key={data}>
+                     <div className='py-1 px-4 border-2 items-center flex flex-col rounded-md h-[100px] justify-between' key={data}>
                         <p className='text-xs text-white italic font-semibold'>
                            {time[index]}:00
                         </p>
                         <img src={next[data].condition.icon} alt="" />
                         {
                            deg && <h4 className="font-medium  text-md text-white">
-                              {fetchData.current.temp_c}&deg;C
+                              {next[data].temp_c}&deg;C
                            </h4>
                         }
                         {
-                           !deg && <h4 className="font-medium  text-md text-white">
-                              {fetchData.current.temp_f}&deg;F
+                           !deg && <h4 className="font-medium text-md text-white">
+                              {next[data].temp_f}&deg;F
                            </h4>
                         }
                      </div>
