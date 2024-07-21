@@ -1,14 +1,9 @@
-import { useContext, useEffect, useState } from "react"
-import { fetchContext } from "../../pages/home"
-import { FaTemperatureHigh } from 'react-icons/fa';
-import { IoThermometer } from 'react-icons/io5';
-import { GiWaterDrop, GiDustCloud, GiMolecule } from 'react-icons/gi';
+import { useEffect, useState } from "react"
+import { GiDustCloud, GiMolecule } from 'react-icons/gi';
 import { MdAir } from 'react-icons/md';
-import { WiRain } from 'react-icons/wi';
 import { useDataContext } from "../fetchData";
 
-function DesktopBody() {
-   const { deg, } = useContext(fetchContext)
+function MobileAirAquality() {
    const {fetchData} = useDataContext()
    const [show, setShow] = useState(false)
    const [us, setUS] = useState({
@@ -45,89 +40,11 @@ function DesktopBody() {
       setShow(true)
    }
    }, [])
+
   return (
-   <section className="flex w-[100%] justify-between mt-5 text-white flex-wrap gap-14">
-      <div className="flex items-start flex-col gap-2">
-         <h2 className="text-sm font-bold text-white capitalize">
-            {fetchData.current.condition.text}
-         </h2>
-         <div className="flex md:gap-8 lg:gap-10">
-            {
-               deg && <h2 className=" text-6xl font-semibold">
-                  {fetchData.current.temp_c}&deg;C
-               </h2>
-            }
-            {
-               !deg && <h2 className=" text-6xl font-semibold">
-                  {fetchData.current.temp_f}&deg;F
-               </h2>
-            }
-            <img src={fetchData.current.condition.icon} alt={fetchData.current.condition.text} />
-         </div>
-            <div className="flex gap-6 mt-10 items-start">
-               <div className="flex flex-col justify-center items-center gap-1">
-                  <IoThermometer  className="text-white w-6 h-6"/>
-                  {
-                     deg && <p className="text-white font-semibold text-xs">
-                        {fetchData.current.feelslike_c}&deg;C
-                     </p>
-                  }
-                  {
-                     !deg && <p className="text-white font-semibold text-xs">
-                        {fetchData.current.feelslike_f}&deg;F
-                     </p>
-                  }
-                  <p className="font-medium italic text-[9px] text-white">
-                     FEELS LIKE
-                  </p>
-               </div>
-               <div className="flex flex-col justify-center items-center gap-1">
-                  <FaTemperatureHigh  className="text-white w-6 h-6"/>
-                  {
-                     deg && <p className="font-semibold text-xs text-white">
-                        {fetchData.current.temp_c}&deg;C
-                     </p>
-                  }
-                  {
-                     !deg && <p className="font-semibold text-xs text-white">
-                        {fetchData.current.temp_f}&deg;F
-                     </p>
-                  }
-                  <p className="font-medium italic text-[9px] text-white">
-                     TEMPERATURE
-                  </p>
-               </div>
-               <div className="flex flex-col justify-center items-center gap-1">
-                  <GiWaterDrop  className="text-white w-6 h-6"/>
-                  <p className="font-semibold text-xs text-white">
-                     {fetchData.current.humidity}
-                  </p>
-                  <p className="font-medium italic text-[9px] text-white">
-                     HUMIDITY
-                  </p>
-               </div>
-               <div className="flex flex-col justify-center items-center gap-1">
-                  <MdAir  className="text-white w-6 h-6"/>
-                  <p className="font-semibold text-xs text-white">
-                     {fetchData.current.wind_mph} MPH
-                  </p>
-                  <p className="font-medium italic text-[9px] text-white">
-                     WIND ({fetchData.current.wind_dir})
-                  </p>
-               </div>
-               <div className="flex flex-col justify-center items-center gap-1">
-                  <WiRain  className="text-white w-6 h-6"/>
-                  <p className="font-semibold text-xs text-white">
-                     {fetchData.current.precip_in}
-                  </p>
-                  <p className="font-medium italic text-[9px] text-white">
-                     PRECIPTATION
-                  </p>
-               </div>
-            </div>
-      </div>
+    <div>
       {
-         show && <div>
+         show && <div className="mt-6">
             <div className="flex flex-col gap-3">
                <h3 className="text-md font-bold text-center text-white pb-2 capitalize w-[100%] border-b-2">
                   AIR QUALITY
@@ -143,7 +60,7 @@ function DesktopBody() {
                   </h3>
                   <div className="flex justify-between">
                      <div className="flex flex-col justify-center items-center gap-1">
-                        < MdAir  className="text-white w-6 h-6"/>
+                        < MdAir  className="text-white w-3 h-3"/>
                         <p className="font-semibold text-xs text-white">
                            {fetchData.current.air_quality.pm2_5}
                         </p>
@@ -152,7 +69,7 @@ function DesktopBody() {
                         </p>
                      </div>
                      <div className="flex flex-col justify-center items-center gap-1">
-                        < GiDustCloud  className="text-white w-6 h-6"/>
+                        < GiDustCloud  className="text-white w-3 h-3"/>
                         <p className="font-semibold text-xs text-white">
                            {fetchData.current.air_quality.pm10}
                         </p>
@@ -161,7 +78,7 @@ function DesktopBody() {
                         </p>
                      </div>
                      <div className="flex flex-col justify-center items-center gap-1">
-                        < GiMolecule  className="text-white w-6 h-6"/>
+                        < GiMolecule  className="text-white w-3 h-3"/>
                         <p className="font-semibold text-xs text-white">
                            {fetchData.current.air_quality.co}
                         </p>
@@ -170,7 +87,7 @@ function DesktopBody() {
                         </p>
                      </div>
                      <div className="flex flex-col justify-center items-center gap-1">
-                        < GiMolecule  className="text-white w-6 h-6"/>
+                        < GiMolecule  className="text-white w-3 h-3"/>
                         <p className="font-semibold text-xs text-white">
                            {fetchData.current.air_quality.no2}
                         </p>
@@ -179,7 +96,7 @@ function DesktopBody() {
                         </p>
                      </div>
                      <div className="flex flex-col justify-center items-center gap-1">
-                        < GiMolecule  className="text-white w-6 h-6"/>
+                        < GiMolecule  className="text-white w-3 h-3"/>
                         <p className="font-semibold text-xs text-white">
                            {fetchData.current.air_quality.o3}
                         </p>
@@ -188,7 +105,7 @@ function DesktopBody() {
                         </p>
                      </div>
                      <div className="flex flex-col justify-center items-center gap-1">
-                        < GiMolecule  className="text-white w-6 h-6"/>
+                        < GiMolecule  className="text-white w-3 h-3"/>
                         <p className="font-semibold text-xs text-white">
                            {fetchData.current.air_quality.so2}
                         </p>
@@ -201,8 +118,8 @@ function DesktopBody() {
             </div>
          </div>
       }
-   </section>
+    </div>
   )
 }
 
-export default DesktopBody
+export default MobileAirAquality

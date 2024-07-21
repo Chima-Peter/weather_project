@@ -29,15 +29,15 @@ function DesktopNav() {
       }, [fetchData])
 
    return (
-   <nav className="z-20 flex justify-between  z-90 top-0">
-      <div className="flex gap-8 items-center">
-         <div className="flex gap-2 items-center">
+   <nav className="z-20 flex justify-between z-90 top-0">
+      <div className="flex md:gap-4 lg:gap-8 items-center">
+         <div className="flex gap-1 items-center">
             <FaLocationCrosshairs className="text-white w-4 h-4"/>
             <h1 className="font-medium md:text-xs lg:text-sm text-white">
                {fetchData.location.name}
             </h1>
          </div>
-         <div className="flex gap-2 items-center">
+         <div className="flex gap-1 items-center">
             <MdLocationPin
                 className="text-white w-4 h-4"/>
             <h1 className="font-medium md:text-xs lg:text-sm text-white">
@@ -63,8 +63,8 @@ function DesktopNav() {
             </button>
          </label>
       </form>
-      <div className="flex gap-8 items-center">
-         <div className="flex gap-2 items-center">
+      <div className="flex md:gap-4 lg:gap-8  items-center">
+         <div className="flex gap-1 items-center">
             <FaGlobeAmericas className="text-white w-4 h-4"/>
             <h1 className="font-medium md:text-xs lg:text-sm text-white">
                {fetchData.location.country}

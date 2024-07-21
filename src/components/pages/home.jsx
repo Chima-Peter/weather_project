@@ -5,6 +5,7 @@ import DesktopHome from "../utils/desktop/desktopHome"
 import MediaQuery from "react-responsive"
 import Loading from "../utils/loading"
 import UserLocation from '../utils/geolocation'
+import MobileHome from "../utils/mobile/mobileHome"
 
 const fetchContext = createContext()
 
@@ -30,8 +31,11 @@ function Home() {
          >
       {
          active && <div className="w-[100%] md:pb-10 z-10 min-h-[100vh] bg-[rgba(0,0,0,0.5)] top-0">
-            <MediaQuery minWidth={'768px'}>
+            <MediaQuery minWidth={'650px'}>
                <DesktopHome />
+            </MediaQuery>
+            <MediaQuery maxWidth={'650px'}>
+               <MobileHome />
             </MediaQuery>
          </div>
       }
